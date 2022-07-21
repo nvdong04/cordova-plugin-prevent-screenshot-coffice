@@ -137,6 +137,7 @@ public class ScreenshotBlocker extends CordovaPlugin{
         if(useDetectSS)
         {   
             Toast.makeText(getActivity(), "This is OnResume!",Toast.LENGTH_LONG).show();
+            CordovaWebView.loadUrl("javascript:console.log('This is OnResume');");
            this.cordova.getActivity().getApplicationContext().getContentResolver().registerContentObserver(
                 MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
                 true,
