@@ -9,6 +9,7 @@ import android.os.Message;
 import android.content.Context;
 import android.util.Log;
 import android.Manifest;
+import android.widget.Toast;
 
 
 import org.apache.cordova.*;
@@ -135,6 +136,7 @@ public class ScreenshotBlocker extends CordovaPlugin{
         super.onResume(multitasking);
         if(useDetectSS)
         {   
+            Toast.makeText(getActivity(), "This is OnResume!",Toast.LENGTH_LONG).show();
            this.cordova.getActivity().getApplicationContext().getContentResolver().registerContentObserver(
                 MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
                 true,
