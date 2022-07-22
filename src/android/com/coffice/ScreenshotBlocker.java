@@ -92,6 +92,7 @@ public class ScreenshotBlocker extends CordovaPlugin{
             mContext.cordova.getActivity().runOnUiThread(new Runnable() {
                 public void run() {
                     try{
+                        Log.d(TAG, "acccccc:");
                         useDetectSS = true;
 
                         ///Check read permisisons to be able to locate screenshots.
