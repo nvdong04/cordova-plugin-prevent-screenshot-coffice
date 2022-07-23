@@ -116,6 +116,7 @@ public class ScreenshotBlocker extends CordovaPlugin{
                             protected void onScreenShot(String path, String fileName) {
                                 //File file = new File(path); //this is the file of screenshot image
                                 triggerJavascriptEvent("onTookScreenshot");
+                                Log.d(TAG, "run onTookScreenshot activateDetect:");
                             }
                         };
                         callbackContext.success("Success");
@@ -183,6 +184,7 @@ public class ScreenshotBlocker extends CordovaPlugin{
             @Override
             public void run() {
                 try {
+                    Log.d(TAG, "executeGlobalJavascript");
                     instance.cordovaWebView.loadUrl("javascript:" + jsString);
                 } catch (Exception e) {
                     Log.e(TAG, "Error executing javascript: "+ e.toString());
