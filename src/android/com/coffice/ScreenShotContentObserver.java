@@ -39,6 +39,7 @@ public abstract class ScreenShotContentObserver extends ContentObserver {
     public void onChange(boolean selfChange, Uri uri) {
         Cursor cursor = null;
         try {
+            System.out.println("run onChange uri");
             cursor = context.getContentResolver().query(uri, new String[]{
                     MediaStore.Images.Media.DISPLAY_NAME,
                     MediaStore.Images.Media.DATA
@@ -60,6 +61,7 @@ public abstract class ScreenShotContentObserver extends ContentObserver {
                 }
             }
         } catch (Throwable t) {
+            System.out.println("exception onChange");
             isFromEdit = true;
         } finally {
             if (cursor != null) {
