@@ -139,7 +139,7 @@ public class ScreenshotBlocker extends CordovaPlugin{
         super.onResume(multitasking);
         if(useDetectSS)
         {   
-            Log.d(TAG, "run onPause:");
+            Log.d(TAG, "run onResume:");
             this.cordova.getActivity().getApplicationContext().getContentResolver().registerContentObserver(
                 MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
                 true,
