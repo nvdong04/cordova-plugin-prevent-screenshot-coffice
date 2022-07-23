@@ -57,6 +57,7 @@ public class ScreenshotBlocker extends CordovaPlugin{
             mContext.cordova.getActivity().runOnUiThread(new Runnable() {
                 public void run() {
                     try{
+                        Log.d(TAG, "run enable:");
                         // Allow to make screenshots removing the FLAG_SECURE
                         if(android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.HONEYCOMB) {
                             mContext.cordova.getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_SECURE);
@@ -74,6 +75,7 @@ public class ScreenshotBlocker extends CordovaPlugin{
             mContext.cordova.getActivity().runOnUiThread(new Runnable() {
                 public void run() {
                     try{
+                        Log.d(TAG, "run disable:");
                         // Allow to make screenshots removing the FLAG_SECURE
                         // Disable the creation of screenshots adding the FLAG_SECURE to the window
                         if(android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.HONEYCOMB) {
@@ -92,7 +94,7 @@ public class ScreenshotBlocker extends CordovaPlugin{
             mContext.cordova.getActivity().runOnUiThread(new Runnable() {
                 public void run() {
                     try{
-                        Log.d(TAG, "acccccc:");
+                        Log.d(TAG, "run activateDetect:");
                         useDetectSS = true;
 
                         ///Check read permisisons to be able to locate screenshots.
@@ -137,9 +139,8 @@ public class ScreenshotBlocker extends CordovaPlugin{
         super.onResume(multitasking);
         if(useDetectSS)
         {   
-            Toast.makeText(getApplicationContext(), "This is OnResume!",Toast.LENGTH_LONG).show();
-            CordovaWebView.loadUrl("javascript:console.log('This is OnResume');");
-           this.cordova.getActivity().getApplicationContext().getContentResolver().registerContentObserver(
+            Log.d(TAG, "run onPause:");
+            this.cordova.getActivity().getApplicationContext().getContentResolver().registerContentObserver(
                 MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
                 true,
                 screenShotContentObserver
@@ -152,6 +153,7 @@ public class ScreenshotBlocker extends CordovaPlugin{
         super.onPause(multitasking);
         if(useDetectSS){
             try {
+                Log.d(TAG, "run onPause:");
                 this.cordova.getActivity().getApplicationContext().getContentResolver().unregisterContentObserver(screenShotContentObserver);
             } catch (Exception e) {
                 e.printStackTrace();
@@ -166,6 +168,7 @@ public class ScreenshotBlocker extends CordovaPlugin{
         {
             instance = null;
             try {
+                Log.d(TAG, "run onDestroy:");
                 this.cordova.getActivity().getApplicationContext().getContentResolver().unregisterContentObserver(screenShotContentObserver);
             } catch (Exception e) {
                 e.printStackTrace();
